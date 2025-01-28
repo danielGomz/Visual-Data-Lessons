@@ -3,11 +3,11 @@ requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "visual_data_lessons"
+name = "visual-data-lessons"
 version = "0.1.0"
 description = "A project for creating educational content using Manim and Python."
 authors = [
-  { name = "Daniel Gomez", email = "tu.email@example.com" },
+  { name = "Daniel Gomez"},
 ]
 license = { file = "LICENSE" }
 readme = "README.md"

@@ -2,7 +2,7 @@
 # GLOBALS                                                                       #
 #################################################################################
 
-PROJECT_NAME = visual_data_lessons
+PROJECT_NAME = visual-data-lessons
 PYTHON_VERSION = 3.8
 PYTHON_INTERPRETER = python
 
