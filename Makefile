@@ -45,7 +45,7 @@ create_environment:
 .PHONY: render
 render:
 	@echo "Rendering scene file: $(FILE)"
-	$(PYTHON_INTERPRETER) -m manim $(FILE) --renderer=opengl -pqh
+	$(PYTHON_INTERPRETER) -m manim $(FILE) -pqh
 
 ## Render all scenes in a specific folder (e.g., project1 or common)
 .PHONY: render-all
