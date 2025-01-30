@@ -26,14 +26,14 @@ clean:
 .PHONY: lint
 lint:
 	ruff check .
-	isort --check --diff scenes
-	black --check --config pyproject.toml scenes
+	isort --check --diff visual_data_lessons
+	black --check --config pyproject.toml visual_data_lessons
 
 ## Format source code with black
 .PHONY: format
 format:
-	isort scenes
-	black --config pyproject.toml scenes
+	isort visual_data_lessons
+	black --config pyproject.toml visual_data_lessons
 
 ## Set up Python environment
 .PHONY: create_environment
@@ -47,11 +47,11 @@ render:
 	@echo "Rendering scene file: $(FILE)"
 	$(PYTHON_INTERPRETER) -m manim $(FILE) -pqh
 
-## Render all scenes in a specific folder (e.g., project1 or common)
+## Render all visual_data_lessons in a specific folder (e.g., project1 or common)
 .PHONY: render-all
 render-all:
-	@echo "Rendering all scenes in folder: $(FOLDER)"
-	find scenes/$(FOLDER) -name "*.py" | xargs -I {} $(PYTHON_INTERPRETER) -m manim {} -pqh
+	@echo "Rendering all visual_data_lessons in folder: $(FOLDER)"
+	find visual_data_lessons/$(FOLDER) -name "*.py" | xargs -I {} $(PYTHON_INTERPRETER) -m manim {} -pqh
 
 
 #################################################################################
