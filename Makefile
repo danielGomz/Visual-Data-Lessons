@@ -41,11 +41,18 @@ create_environment:
 	conda create --name $(PROJECT_NAME) python=$(PYTHON_VERSION) -y
 	@echo ">>> Conda environment created. Activate with:\nconda activate $(PROJECT_NAME)"
 
-## Render a specific scene file
-.PHONY: render
-render:
-	@echo "Rendering scene file: $(FILE)"
-	$(PYTHON_INTERPRETER) -m manim $(FILE) -pqh
+## Render a specific scene file in horizontal format
+.PHONY: render-horizontal
+render-horizontal:
+	@echo "Rendering scene file: $(FILE) in HORIZONTAL format"
+	$(PYTHON_INTERPRETER) -m manim $(FILE) -pqh --config_file visual_data_lessons/config/config_horizontal.cfg
+
+
+## Render a specific scene file in vertical format
+.PHONY: render-vertical
+render-vertical:
+	@echo "Rendering scene file: $(FILE) in VERTICAL format"
+	$(PYTHON_INTERPRETER) -m manim $(FILE) -p --config_file visual_data_lessons/config/config_vertical.cfg
 
 ## Render all visual_data_lessons in a specific folder (e.g., project1 or common)
 .PHONY: render-all
