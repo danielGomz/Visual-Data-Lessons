@@ -1,18 +1,4 @@
-from manim import (
-    BLUE,
-    BOLD,
-    DOWN,
-    GREEN,
-    LEFT,
-    UL,
-    UP,
-    FadeIn,
-    FadeOut,
-    Scene,
-    Text,
-    Transform,
-    Write,
-)
+from manim import BLUE, BOLD, DOWN, GREEN, UL, UP, FadeIn, FadeOut, Scene, Text, Transform, Write
 
 from visual_data_lessons.config import DEFAULT_FONT
 
@@ -31,15 +17,17 @@ class IntroScene(Scene):
         Calls the display_intro method to construct the scene.
     """
 
-    def display_intro(self, title_video: str = None) -> None:
+    def display_intro(self, video_title: str = None, author_name: str = "Daniel Gómez") -> None:
         """
         Displays the channel name and description, then optionally transforms the channel name into the video title.
 
         Parameters
         ----------
-        title_video : str, optional
+        video_title : str, optional
             The title of the video to display. If None, only the channel name and description are shown.
             Default is None.
+        author_name : str, optional
+            The name of the author or presenter to display. Default is "Daniel Gómez".
 
         Returns
         -------
@@ -50,7 +38,7 @@ class IntroScene(Scene):
         -----
         If a video title is provided, the channel name will be replaced with the video title after the description is displayed.
         """
-        chanel_name = Text(
+        project_name = Text(
             "Visual Data Lessons",
             font=DEFAULT_FONT,
             font_size=72,
@@ -58,34 +46,29 @@ class IntroScene(Scene):
             weight=BOLD,
         )
 
-        description_text = Text(
-            "Python, Data Science & More", font=DEFAULT_FONT, font_size=36, weight="LIGHT"
-        ).next_to(chanel_name, DOWN)
+        host_text = Text(
+            f"Presented by {author_name}", font=DEFAULT_FONT, font_size=36, weight="LIGHT"
+        ).next_to(project_name, DOWN)
 
-        self.play(Write(chanel_name))
-        self.play(FadeIn(description_text, shift=UP), run_time=1.5)
+        self.play(Write(project_name))
+        self.play(FadeIn(host_text, shift=UP), run_time=1.5)
 
         self.wait(1)
-        self.play(FadeOut(description_text))
+        self.play(FadeOut(host_text))
 
-        if title_video is not None:
-            title_video_text = Text(
-                title_video,
+        if video_title is not None:
+            title_text = Text(
+                video_title,
                 font=DEFAULT_FONT,
                 font_size=72,
                 weight=BOLD,
             )
 
-            self.play(Transform(chanel_name, title_video_text))
+            self.play(Transform(project_name, title_text))
 
-            self.play(
-                chanel_name.animate.scale(0.3).move_to(
-                    self.camera.frame_width * LEFT / 2 + self.camera.frame_height * UP / 2,
-                    aligned_edge=UL,
-                )
-            )
+            self.play(project_name.animate.scale(0.3).to_edge(UL))
 
-            self.play(FadeOut(chanel_name))
+            self.play(FadeOut(project_name))
 
         self.wait(1)
 
@@ -101,4 +84,4 @@ class IntroScene(Scene):
             This method does not return anything.
 
         """
-        self.display_intro(title_video="Video Title")
+        self.display_intro(video_title="Video Title")
