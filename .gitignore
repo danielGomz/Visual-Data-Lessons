@@ -74,3 +74,7 @@ Thumbs.db
 .pytest_cache/
 .coverage
 htmlcov/
+
+#################################################################################
+
+src/visual_data_lessons/common/assets/sound/
